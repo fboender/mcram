@@ -62,12 +62,12 @@ mc_check_running_ramdisk () {
 #
 mc_save_off () {
 	$PATH_TMUX send -t "$TMUX_MCNAME" "save-off" C-m
-	SAVE_COMPLETE=`grep "Save complete." $PATH_MC/server.log | wc -l`
+	SAVE_COMPLETE=`grep "Saved the world" $PATH_MC/server.log | wc -l`
 	$PATH_TMUX send -t "$TMUX_MCNAME" "save-all" C-m
 	
 	while true; do
 		sleep 0.2
-		TMP=`grep "Save complete." $PATH_MC/server.log | wc -l`
+		TMP=`grep "Saved the world" $PATH_MC/server.log | wc -l`
 		if [ $TMP -gt $SAVE_COMPLETE ]; then
 			break
 		fi
